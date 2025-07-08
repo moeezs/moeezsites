@@ -1,12 +1,8 @@
-"use client";
-
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-// Dialog removed - using direct YouTube embeds instead
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,32 +13,33 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Marquee } from "@/components/magicui/marquee";
 import {
-  ExternalLink,
   Mail,
   Phone,
   MapPin,
   Star,
   GraduationCap,
-  BookOpen,
   Users,
-  Award,
   CheckCircle,
   Calendar,
-  Clock,
   Target,
   Brain,
   TrendingUp,
   Download,
   Heart,
-  Sparkles,
-  Quote,
   Trophy,
-  Zap,
   Globe,
-  Building,
   Crown
 } from "lucide-react";
 import Image from "next/image";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+    title: "Queen Elizabeth Tutoring",
+    icons: {
+        icon: "/divtech/logo.png",
+    },
+};
 
 // Google Reviews Data
 const googleReviews = [
@@ -285,9 +282,12 @@ const locations = [
 
 export default function QETutoringPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50 light !bg-white !text-black">
+      {/* Force light mode */}
+      <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.remove('dark');` }} />
+      
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white shadow-lg border-b-4 border-orange-400">
+      <nav className="sticky top-0 z-50 bg-white shadow-lg border-b-4 border-orange-400 !text-black">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -313,17 +313,19 @@ export default function QETutoringPage() {
             </div>
 
             {/* Navigation Menu */}
-            <NavigationMenu>
+            <NavigationMenu className="bg-white !text-black">
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="#home" className="font-semibold px-4 py-2 hover:text-orange-700 text-gray-800 border-b-2 border-transparent hover:border-orange-400">
+                  <NavigationMenuLink href="#home" className="font-semibold px-4 py-2 hover:text-orange-700 text-gray-800 border-b-2 border-transparent hover:border-orange-400 bg-white hover:bg-orange-50 focus:bg-orange-100">
                     Home
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-800 hover:text-orange-700 font-semibold">Programs</NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 mt-2">
+                  <NavigationMenuTrigger className="text-gray-800 hover:text-orange-700 font-semibold bg-white hover:bg-orange-50 focus:bg-orange-100 data-[state=open]:hover:bg-orange-100 data-[state=open]:text-black data-[state=open]:focus:bg-orange-100 data-[state=open]:bg-orange-50">
+                    Programs
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="absolute left-0 mt-2 bg-white text-black">
                     <div className="grid gap-3 p-6 w-[300px] bg-white shadow-2xl rounded-lg border-4 border-orange-200">
                       <NavigationMenuLink href="#summer-school" className="text-sm font-semibold text-gray-700 hover:text-orange-700 p-3 rounded hover:bg-orange-50 border border-transparent hover:border-orange-300">
                         Summer School
@@ -344,9 +346,11 @@ export default function QETutoringPage() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-800 hover:text-orange-700 font-semibold">Subjects</NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 mt-2">
+                <NavigationMenuItem> 
+                  <NavigationMenuTrigger className="text-gray-800 hover:text-orange-700 font-semibold bg-white hover:bg-orange-50 focus:bg-orange-100 data-[state=open]:hover:bg-orange-100 data-[state=open]:text-black data-[state=open]:focus:bg-orange-100 data-[state=open]:bg-orange-50">
+                    Subjects
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="absolute left-0 mt-2 !bg-white !text-black">
                     <div className="grid gap-3 p-6 w-[400px] grid-cols-2 bg-white shadow-2xl rounded-lg border-4 border-orange-200">
                       <div className="space-y-2">
                         <h4 className="font-bold text-orange-800">Core Subjects</h4>
@@ -382,8 +386,10 @@ export default function QETutoringPage() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-800 hover:text-orange-700 font-semibold">Advice</NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 mt-2">
+                  <NavigationMenuTrigger className="text-gray-800 hover:text-orange-700 font-semibold bg-white hover:bg-orange-50 focus:bg-orange-100 data-[state=open]:hover:bg-orange-100 data-[state=open]:text-black data-[state=open]:focus:bg-orange-100 data-[state=open]:bg-orange-50">
+                    Advice
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="absolute left-0 mt-2 !bg-white !text-black">
                     <div className="grid gap-3 p-6 w-[250px] bg-white shadow-2xl rounded-lg border-4 border-orange-200">
                       <NavigationMenuLink href="#math-help" className="text-sm font-semibold text-gray-700 hover:text-orange-700 p-3 rounded hover:bg-orange-50 border border-transparent hover:border-orange-300">
                         Math Help Topics
@@ -396,8 +402,10 @@ export default function QETutoringPage() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-800 hover:text-orange-700 font-semibold">Contact</NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 mt-2">
+                  <NavigationMenuTrigger className="text-gray-800 hover:text-orange-700 font-semibold bg-white hover:bg-orange-50 focus:bg-orange-100 data-[state=open]:hover:bg-orange-100 data-[state=open]:text-black data-[state=open]:focus:bg-orange-100 data-[state=open]:bg-orange-50">
+                    Contact
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="absolute left-0 mt-2 !bg-white !text-black">
                     <div className="grid gap-3 p-6 w-[280px] bg-white shadow-2xl rounded-lg border-4 border-orange-200">
                       <div className="space-y-2">
                         <h4 className="font-bold text-orange-800">Get in Touch</h4>
@@ -431,7 +439,7 @@ export default function QETutoringPage() {
       </nav>
 
       {/* Old School Hero Section */}
-      <section id="home" className="py-16 bg-gradient-to-r from-orange-100 to-yellow-100 border-b-4 border-orange-400">
+      <section id="home" className="py-16 bg-gradient-to-r from-orange-100 to-yellow-100 border-b-4 border-orange-400 !text-black">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">
@@ -476,7 +484,7 @@ export default function QETutoringPage() {
                   <Phone className="h-5 w-5 mr-2" />
                   📞 Call Now: (365) 800-3775
                 </Button>
-                <Button variant="outline" size="lg" className="border-4 border-orange-600 text-orange-700 hover:bg-orange-50 px-8 py-4 text-lg font-bold shadow-lg rounded-lg">
+                <Button variant="outline" size="lg" className=" light border-4 border-orange-600 hover:text-black text-orange-700 hover:bg-white/50 px-8 py-4 text-lg font-bold shadow-lg rounded-lg bg-white">
                   <Calendar className="h-5 w-5 mr-2" />
                   📚 Free Consultation
                 </Button>
@@ -504,7 +512,7 @@ export default function QETutoringPage() {
       </section>
 
       {/* Success Stories Marquee */}
-      <section className="py-16 bg-gradient-to-r from-green-50 to-emerald-50">
+      <section className="py-16 bg-gradient-to-r from-green-50 to-emerald-50 !text-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-green-700">
@@ -517,7 +525,7 @@ export default function QETutoringPage() {
           
           <Marquee className="py-4" pauseOnHover>
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="mx-4 w-80 border-green-200 bg-white/80 dark:bg-gray-950/80 backdrop-blur">
+              <Card key={index} className="mx-4 w-80 border-green-200 bg-white/80 backdrop-blur">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-1 mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -535,8 +543,8 @@ export default function QETutoringPage() {
         </div>
       </section>
 
-      {/* QEA Students Maintain A Average Section with Video */}
-      <section className="py-16">
+      {/* QEA Students Maintain A Average Section */}
+      <section className="py-16 !bg-white !text-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2">
@@ -546,18 +554,18 @@ export default function QETutoringPage() {
             <h2 className="text-4xl font-bold mb-4">
               QEA Students maintain A average in university!
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Our students don't just get into great universities - they continue to excel once they're there.
               Here are some of their inspiring success stories.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="overflow-hidden border-purple-200 hover:shadow-xl transition-all duration-300">
+            <Card className="overflow-hidden border-purple-200 hover:shadow-xl transition-all duration-300 !bg-white !text-black">
               <div className="relative h-48 bg-gradient-to-br from-purple-400 to-indigo-400 p-6 flex items-center justify-center">
                 <div className="text-center text-white">
                   <GraduationCap className="h-12 w-12 mx-auto mb-3" />
-                  <Badge className="bg-black/50 mb-2">Success Story</Badge>
+                  <Badge className="bg-white/50 mb-2">Success Story</Badge>
                   <div className="text-2xl font-bold">🎓</div>
                 </div>
               </div>
@@ -567,11 +575,11 @@ export default function QETutoringPage() {
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden border-indigo-200 hover:shadow-xl transition-all duration-300">
+            <Card className="overflow-hidden border-indigo-200 hover:shadow-xl transition-all duration-300 !bg-white !text-black">
               <div className="relative h-48 bg-gradient-to-br from-indigo-400 to-blue-400 p-6 flex items-center justify-center">
                 <div className="text-center text-white">
                   <Trophy className="h-12 w-12 mx-auto mb-3" />
-                  <Badge className="bg-black/50 mb-2">Success Story</Badge>
+                  <Badge className="bg-white/50 mb-2">Success Story</Badge>
                   <div className="text-2xl font-bold">🏆</div>
                 </div>
               </div>
@@ -581,11 +589,11 @@ export default function QETutoringPage() {
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden border-blue-200 hover:shadow-xl transition-all duration-300">
+            <Card className="overflow-hidden border-blue-200 hover:shadow-xl transition-all duration-300 !bg-white !text-black">
               <div className="relative h-48 bg-gradient-to-br from-blue-400 to-cyan-400 p-6 flex items-center justify-center">
                 <div className="text-center text-white">
                   <Star className="h-12 w-12 mx-auto mb-3" />
-                  <Badge className="bg-black/50 mb-2">Success Story</Badge>
+                  <Badge className="bg-white/50 mb-2">Success Story</Badge>
                   <div className="text-2xl font-bold">⭐</div>
                 </div>
               </div>
@@ -599,7 +607,7 @@ export default function QETutoringPage() {
       </section>
 
       {/* Meet Our Tutors Section with Videos */}
-      <section className="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+      <section className="py-16 bg-gradient-to-br from-amber-50 to-orange-50 !text-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2">
@@ -617,11 +625,11 @@ export default function QETutoringPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {tutors.slice(0, 6).map((tutor, index) => (
-              <Card key={index} className="overflow-hidden border-amber-200 hover:shadow-xl transition-all duration-300">
+              <Card key={index} className="overflow-hidden border-amber-200 hover:shadow-xl transition-all duration-300 !bg-white !text-black">
                 <div className="relative h-48 bg-gradient-to-br from-amber-400 to-orange-400 p-6 flex items-center justify-center">
                   <div className="text-center text-white">
                     <Users className="h-12 w-12 mx-auto mb-3" />
-                    <Badge className="bg-black/50 mb-2">{tutor.specialty}</Badge>
+                    <Badge className="bg-white/50 mb-2">{tutor.specialty}</Badge>
                     <div className="text-2xl font-bold">{tutor.name.split(' ').map(n => n[0]).join('')}</div>
                   </div>
                 </div>
@@ -648,7 +656,7 @@ export default function QETutoringPage() {
       </section>
 
       {/* Alumni Success Marquee */}
-      <section className="py-16">
+      <section className="py-16 !text-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">
@@ -668,7 +676,7 @@ export default function QETutoringPage() {
                       {graduate.name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">{graduate.name}</h3>
+                      <h3 className="font-semibold text-lg text-black">{graduate.name}</h3>
                       <p className="text-sm text-muted-foreground">{graduate.university}</p>
                     </div>
                   </div>
@@ -682,7 +690,7 @@ export default function QETutoringPage() {
       </section>
 
       {/* Programs and Approach */}
-      <section id="programs" className="py-16 bg-gradient-to-br from-purple-50 to-pink-50">
+      <section id="programs" className="py-16 bg-gradient-to-br from-purple-50 to-pink-50 !bg-white !text-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Our Approach to Learning</h2>
@@ -753,21 +761,21 @@ export default function QETutoringPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="text-center p-8 border-purple-200">
+            <Card className="text-center p-8 border-purple-200 !bg-white !text-black">
               <Brain className="h-12 w-12 mx-auto mb-4 text-purple-600" />
               <h4 className="font-semibold text-lg mb-3">Understanding Over Memorization</h4>
               <p className="text-muted-foreground text-sm">
                 The student needs to clearly define the concept and its boundaries, understanding more than just memorizing equations.
               </p>
             </Card>
-            <Card className="text-center p-8 border-pink-200">
+            <Card className="text-center p-8 border-pink-200 !bg-white !text-black">
               <Target className="h-12 w-12 mx-auto mb-4 text-pink-600" />
               <h4 className="font-semibold text-lg mb-3">Pattern Recognition</h4>
               <p className="text-muted-foreground text-sm">
                 Students learn when to apply concepts through practice, helping them recognize patterns in problem-solving.
               </p>
             </Card>
-            <Card className="text-center p-8 border-indigo-200">
+            <Card className="text-center p-8 border-indigo-200 !bg-white !text-black">
               <CheckCircle className="h-12 w-12 mx-auto mb-4 text-indigo-600" />
               <h4 className="font-semibold text-lg mb-3">Core Rules</h4>
               <p className="text-muted-foreground text-sm">
@@ -965,7 +973,7 @@ export default function QETutoringPage() {
       </section>
 
       {/* Locations */}
-      <section className="py-16">
+      <section className="py-16 !bg-white !text-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Find Queen Elizabeth at your neighbourhood</h2>
@@ -976,7 +984,7 @@ export default function QETutoringPage() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {locations.map((location, index) => (
-              <Card key={index} className="text-center p-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+              <Card key={index} className="text-center p-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer !bg-white !text-black">
                 <CardContent className="p-2">
                   <MapPin className="h-6 w-6 mx-auto mb-2 text-blue-600" />
                   <p className="text-sm font-medium">{location}</p>
@@ -988,10 +996,10 @@ export default function QETutoringPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 bg-gradient-to-br from-blue-950 to-purple-950 text-white">
+      <section id="contact" className="py-16 bg-gradient-to-br from-blue-950 to-purple-950 text-white !bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Ready to Start Your Success Journey?</h2>
+            <h2 className="text-4xl font-bold mb-4 text-white">Ready to Start Your Success Journey?</h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               Join 1000+ students who have achieved academic excellence with Queen Elizabeth Academy
             </p>
@@ -999,53 +1007,52 @@ export default function QETutoringPage() {
 
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">Contact Information</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Phone className="h-6 w-6 text-blue-400" />
                   <div>
-                    <p className="font-medium">General Inquiry</p>
-                    <a href="tel:+13658003775" className="text-blue-300 hover:text-blue-200">+1 (365) 800-3775</a>
+                    <p className="font-medium text-white">General Inquiry</p>
+                    <a href="tel:+13658003775" className="text-blue-600 hover:text-blue-500">+1 (365) 800-3775</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="h-6 w-6 text-purple-400" />
                   <div>
-                    <p className="font-medium">Tutoring & Credit Courses</p>
+                    <p className="font-medium text-white">Tutoring & Credit Courses</p>
                     <a href="tel:+19052579009" className="text-purple-300 hover:text-purple-200">(905) 257-9009</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-6 w-6 text-green-400" />
                   <div>
-                    <p className="font-medium">Email</p>
+                    <p className="font-medium text-white">Email</p>
                     <a href="mailto:vwlee2008@gmail.com" className="text-green-300 hover:text-green-200">vwlee2008@gmail.com</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-6 w-6 text-red-400" />
                   <div>
-                    <p className="font-medium">Location</p>
+                    <p className="font-medium text-white">Location</p>
                     <p className="text-red-300">Unit 5, 1020 Johnsons Lane, Mississauga</p>
                   </div>
                 </div>
               </div>
             </div>
-
             <div>
-              <Card className="bg-white/10 backdrop-blur border-white/20">
+              <Card className="bg-white border border-gray-300 !text-black">
                 <CardHeader>
-                  <CardTitle className="text-white">Book Your Free Consultation</CardTitle>
-                  <CardDescription className="text-blue-100">
+                  <CardTitle>Book Your Free Consultation</CardTitle>
+                  <CardDescription>
                     Get personalized advice on the best tutoring program for your needs
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  <Button className="w-full bg-gradient-to-r text-white from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                     <Calendar className="h-5 w-5 mr-2" />
                     Schedule Free Assessment
                   </Button>
-                  <Button variant="outline" className="w-full border-white/30 text-black hover:bg-white/50">
+                  <Button variant="outline" className="w-full border-black text-black hover:bg-white/50 hover:text-black">
                     <Download className="h-5 w-5 mr-2" />
                     Download Study Guide
                   </Button>
@@ -1057,15 +1064,15 @@ export default function QETutoringPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-border/50 bg-background">
+      <footer className="py-8 border-t border-border/50 bg-white !text-black">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Heart className="h-4 w-4 text-red-500" />
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-gray-700">
               © 2008-2025 Queen Elizabeth Academy. All Rights Reserved.
             </p>
           </div>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-gray-600">
             Queen Elizabeth Academy has no affiliation with Harvard University or University of Toronto, 
             who do not endorse our products or services.
           </p>
@@ -1074,3 +1081,4 @@ export default function QETutoringPage() {
     </div>
   );
 }
+
